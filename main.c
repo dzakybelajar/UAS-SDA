@@ -5,16 +5,17 @@ void menu_utama(){
     int pilihan;
     do
     {
-        pilihan=0;
+        pilihan=6;
         printf("====menu====\n");
         printf("1.Tambah tugas\n");
         printf("2.Cari tugas\n");
         printf("3.Hapus tugas\n");
         printf("4.Lihat tugas paling mendesak\n");
         printf("5.Urutkan tugas berdasarkan bobot nilai\n");
+        printf("0.keluar\n");
         printf("pilih menu:");
-        if (scanf("%d",&pilihan)!=1)
-        { pilihan=0; }
+        scanf("%d",&pilihan);
+        while (getchar()!='\n'); 
         switch (pilihan)
         {
         case 1:
@@ -31,6 +32,9 @@ void menu_utama(){
             break;
         case 5:
             urutkan_tugas_berdasarkan_bobot_nilai();
+            break;
+        case 0:
+            printf("keluar dari program!\n");
             break;
         default:
             printf("input tidak valid!\n");
