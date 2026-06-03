@@ -1,3 +1,4 @@
+#define size_hash_table 20
 void hash_tabel();
 void menu_utama();
 void tambah_tugas();

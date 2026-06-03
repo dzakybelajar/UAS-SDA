@@ -13,7 +13,7 @@ typedef struct Tugas
     struct Tugas *next;
 }Tugas;
 
-Tugas tugas[20];
+Tugas tugas[size_hash_table];
 
 #include <stdio.h>
 // #include "nama_file_header_lu.h" // kalau lu pake file .h, un-comment ini
