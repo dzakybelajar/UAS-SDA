@@ -13,8 +13,8 @@ void menu_utama(){
         printf("4.Lihat tugas paling mendesak\n");
         printf("5.Urutkan tugas berdasarkan bobot nilai\n");
         printf("pilih menu:");
-        scanf("%d",&pilihan);
-        while(getchar()!="\n");
+        if (scanf("%d",&pilihan)!=1)
+        { pilihan=0; }
         switch (pilihan)
         {
         case 1:

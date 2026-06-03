@@ -10,7 +10,34 @@ typedef struct Tugas
     char nama_mapel[30];
     int bobot;
     int deadline;
-    Tugas *next;
+    struct Tugas *next;
 }Tugas;
 
 Tugas tugas[20];
+
+#include <stdio.h>
+// #include "nama_file_header_lu.h" // kalau lu pake file .h, un-comment ini
+
+void tambah_tugas() {
+    printf("Fungsi tambah_tugas berhasil dipanggil!\n");
+}
+
+void cari_tugas() {
+    printf("Fungsi cari_tugas berhasil dipanggil!\n");
+}
+
+void hash_table() {
+    // Kosongin dulu gapapa
+}
+
+void hapus_tugas() {
+    printf("Fungsi hapus_tugas berhasil dipanggil!\n");
+}
+
+void lihat_tugas_paling_mendesak() {
+    printf("Fungsi lihat_tugas_paling_mendesak berhasil dipanggil!\n");
+}
+
+void urutkan_tugas_berdasarkan_bobot_nilai() {
+    printf("Fungsi urutkan_tugas_berdasarkan_bobot_nilai berhasil dipanggil!\n");
+}
