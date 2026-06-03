@@ -13,28 +13,28 @@ typedef struct Tugas
     struct Tugas *next;
 }Tugas;
 
-Tugas tugas[size_hash_table]; 
+Tugas *tugas[size_hash_table]; 
 
-void tambah_tugas() {
+void tambah_tugas(){
     printf("Fungsi tambah_tugas berhasil dipanggil!\n");
 }
 
-void cari_tugas() {
+void cari_tugas(){
     printf("Fungsi cari_tugas berhasil dipanggil!\n");
 }
 
-void hash_table() {
+void hash_table(){
     // Kosongin dulu gapapa
 }
 
-void hapus_tugas() {
+void hapus_tugas(){
     printf("Fungsi hapus_tugas berhasil dipanggil!\n");
 }
 
-void lihat_tugas_paling_mendesak() {
+void lihat_tugas_paling_mendesak(){
     printf("Fungsi lihat_tugas_paling_mendesak berhasil dipanggil!\n");
 }
 
-void urutkan_tugas_berdasarkan_bobot_nilai() {
+void urutkan_tugas_berdasarkan_bobot_nilai(){
     printf("Fungsi urutkan_tugas_berdasarkan_bobot_nilai berhasil dipanggil!\n");
 }
