@@ -2,11 +2,14 @@
 #include<stdlib.h>
 #include<time.h>
 
-struct Tugas
+typedef struct Tugas
 {
-    int id;
+    int id_tugas;
     char nama_tugas[30];
     char nama_mapel[30];
     int bobot;
     int deadline;
-}tugas;
+    Tugas *next;
+}Tugas;
+
+Tugas tugas[20];
