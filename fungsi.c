@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 
 struct Tugas
 {
@@ -7,5 +8,5 @@ struct Tugas
     char nama_tugas[30];
     char nama_mapel[30];
     int bobot;
-    
+    int deadline;
 }tugas;
