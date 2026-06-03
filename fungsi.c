@@ -6,17 +6,14 @@
 typedef struct Tugas
 {
     int id_tugas;
-    char nama_tugas[30];
-    char nama_mapel[30];
+    char nama_tugas[20];
+    char nama_mapel[20];
     int bobot;
     int deadline;
     struct Tugas *next;
 }Tugas;
 
-Tugas tugas[size_hash_table];
-
-#include <stdio.h>
-// #include "nama_file_header_lu.h" // kalau lu pake file .h, un-comment ini
+Tugas tugas[size_hash_table]; 
 
 void tambah_tugas() {
     printf("Fungsi tambah_tugas berhasil dipanggil!\n");
