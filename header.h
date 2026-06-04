@@ -1,4 +1,5 @@
 #define size_hash_table 13
+#define max_tugas 50
 void hash_table(char[],char[],int,int);
 void menu_utama();
 void tambah_tugas();
