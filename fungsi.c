@@ -38,7 +38,6 @@ void tambah_tugas(){
     deadline = bln*100 + tgl;
     id++;
     hash_table(nama_tugas,nama_mapel,deadline,bbt);
-    banyak_tugas++; 
 }
 
 void cari_tugas(){
@@ -57,10 +56,16 @@ void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
     indeks = id % size_hash_table;
     newnode->next = tugas[indeks];
     tugas[indeks] = newnode;
+    banyak_tugas++; 
+    printf("tugas berhasil ditambah!\n");
 }
 
 void hapus_tugas(){
-    printf("Fungsi hapus_tugas berhasil dipanggil!\n");
+    if (banyak_tugas==0)
+    { printf("tidak ada tugas!\n"); return; }
+    
+    banyak_tugas--;
+    printf("tugas berhasil dihapus!\n");
 }
 
 void lihat_tugas_paling_mendesak(){
