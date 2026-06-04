@@ -1,5 +1,5 @@
 #define size_hash_table 13
-void hash_table();
+void hash_table(char[],char[],int,int);
 void menu_utama();
 void tambah_tugas();
 void cari_tugas();
