@@ -41,7 +41,35 @@ void tambah_tugas(){
 }
 
 void cari_tugas(){
-    printf("Fungsi cari_tugas berhasil dipanggil!\n");
+    char nt[20];
+    int ketemu=0;
+    if (banyak_tugas==0)
+    { printf("tidak ada tugas!\n"); return; }
+
+    printf("masukkan nama tugas:");
+    fgets(nt,20,stdin);
+    nt[strcspn(nt,"\n")]=0;
+
+    for (int i = 0; i < size_hash_table; i++)
+    {   
+        Tugas *temp1=tugas[i];
+        Tugas *temp2=temp1;
+        while (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)!=0)
+        { temp1=temp1->next; }
+
+        if (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)==0)
+        { 
+            printf("nama tugas: %s",temp1->nama_tugas);
+            printf("nama mata pelajaran: %s",temp1->nama_mapel);
+            printf("bobot: %d persen",temp1->bobot);
+            printf("deadline: %d",temp1->deadline);  
+            ketemu=1;
+            break;
+        }
+    }
+
+    if (ketemu==0)
+    { printf("tugas tidak ditemukan!\n"); }
 }
 
 void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
@@ -64,13 +92,56 @@ void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
 }
 
 void hapus_tugas(){
+    char nt[20];
+    int ketemu=0;
     if (banyak_tugas==0)
     { printf("tidak ada tugas!\n"); return; }
 
-    printf("masukkan ");
-    
-    banyak_tugas--;
-    printf("tugas berhasil dihapus!\n");
+    printf("masukkan nama tugas:");
+    fgets(nt,20,stdin);
+    nt[strcspn(nt,"\n")]=0;
+
+    for (int i = 0; i < size_hash_table; i++)
+    {   
+        Tugas *temp1=tugas[i];
+        Tugas *temp2=temp1;
+        while (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)!=0)
+        { 
+            temp2=temp1;
+            temp1=temp1->next;
+        }
+        if (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)==0)
+        {
+            if (temp1==tugas[i])
+            {
+                tugas[i]=temp1->next;
+                free(temp1);
+                ketemu=1;
+                break;
+            }
+            else
+            {
+                if (temp1->next==NULL)
+                {
+                    temp2->next=NULL;
+                    free(temp1);
+                    ketemu=1;
+                    break;
+                }
+                else
+                {
+                    temp2->next=temp1->next;
+                    free(temp1);
+                    ketemu=1;
+                    break;
+                }
+            }     
+        }
+    }
+    if (ketemu==1)
+    {  printf("tugas berhasil dihapus!\n"); banyak_tugas--; }
+    else
+    { printf("tugas tidak ditemukan!\n"); }
 }
 
 void lihat_tugas_paling_mendesak(){
