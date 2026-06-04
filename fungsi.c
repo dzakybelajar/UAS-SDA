@@ -57,12 +57,17 @@ void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
     newnode->next = tugas[indeks];
     tugas[indeks] = newnode;
     banyak_tugas++; 
-    printf("tugas berhasil ditambah!\n");
+    printf("tugas:%s\n",nama_tugas);
+    printf("mata pelajaran:%s\n",nama_mapel);
+    printf("id tugas:%d\n",newnode->id_tugas);
+    printf("berhasil ditambah!\n");
 }
 
 void hapus_tugas(){
     if (banyak_tugas==0)
     { printf("tidak ada tugas!\n"); return; }
+
+    printf("masukkan ");
     
     banyak_tugas--;
     printf("tugas berhasil dihapus!\n");
