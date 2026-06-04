@@ -59,10 +59,12 @@ void cari_tugas(){
 
         if (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)==0)
         { 
+            int tgl=temp1->deadline%100;
+            int bln=temp1->deadline/100;
             printf("nama tugas: %s",temp1->nama_tugas);
             printf("nama mata pelajaran: %s",temp1->nama_mapel);
             printf("bobot: %d persen",temp1->bobot);
-            printf("deadline: %d",temp1->deadline);  
+            printf("deadline: %d-%d",tgl,bln);  
             ketemu=1;
             break;
         }
