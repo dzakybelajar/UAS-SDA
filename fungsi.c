@@ -36,6 +36,7 @@ void tambah_tugas(){
     deadline = bln*100 + tgl;
     id++;
     hash_table(nama_tugas,nama_mapel,deadline,bbt);
+    banyak_tugas++; 
 }
 
 void cari_tugas(){
@@ -43,15 +44,17 @@ void cari_tugas(){
 }
 
 void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
+    Tugas *newnode=(Tugas*) malloc(sizeof(Tugas));
+    newnode->id_tugas = id;
+    strcpy(newnode->nama_tugas,nama_tugas);
+    strcpy(newnode->nama_mapel,nama_mapel);
+    newnode->bobot=bbt;
+    newnode->deadline=ddline;
+     
     int indeks;
     indeks = id % size_hash_table;
-    while (tugas[indeks]!=NULL)
-    { tugas[indeks]=tugas[indeks]->next; }
-    tugas[indeks]->id_tugas = id;
-    strcpy(tugas[indeks]->nama_tugas,nama_tugas);
-    strcpy(tugas[indeks]->nama_mapel,nama_mapel);
-    tugas[indeks]->bobot=bbt;
-    tugas[indeks]->deadline=ddline;
+    newnode->next = tugas[indeks];
+    tugas[indeks] = newnode;
 }
 
 void hapus_tugas(){
