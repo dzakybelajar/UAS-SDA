@@ -24,8 +24,10 @@ void tambah_tugas(){
     int bbt, tgl, bln, deadline;
     printf("masukkan nama tugas:");
     fgets(nama_tugas,20,stdin);
+    nama_tugas[strcspn(nama_tugas,"\n")]=0;
     printf("masukkan nama mapel:");
     fgets(nama_mapel,20,stdin);
+    nama_mapel[strcspn(nama_mapel,"\n")]=0;
     printf("masukkan bobot tugas dalam persen(tanpa tanda persen):");
     scanf("%d",&bbt);
     printf("masukkan deadline tugas!\n");
