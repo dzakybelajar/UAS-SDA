@@ -13,8 +13,10 @@ typedef struct Tugas
     int deadline;
     struct Tugas *next;
 }Tugas;
+
 int banyak_tugas=0;
 int id=0;
+char persen='%'; 
 
 Tugas *tugas[size_hash_table]; 
 
@@ -22,6 +24,7 @@ void tambah_tugas(){
     char nama_tugas[20];
     char nama_mapel[20];
     int bbt, tgl, bln, deadline;
+
     printf("masukkan nama tugas:");
     fgets(nama_tugas,20,stdin);
     nama_tugas[strcspn(nama_tugas,"\n")]=0;
