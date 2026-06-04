@@ -56,7 +56,6 @@ void cari_tugas(){
     for (int i = 0; i < size_hash_table; i++)
     {   
         Tugas *temp1=tugas[i];
-        Tugas *temp2=temp1;
         while (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)!=0)
         { temp1=temp1->next; }
 
