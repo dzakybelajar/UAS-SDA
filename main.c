@@ -5,7 +5,7 @@ void menu_utama(){
     do
     {
         pilihan=0;
-        printf("====MENU====\n");
+        printf("==== MENU ====\n");
         printf("1. Tambah tugas\n");
         printf("2. Cari tugas\n");
         printf("3. Hapus tugas\n");
