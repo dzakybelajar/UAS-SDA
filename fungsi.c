@@ -27,6 +27,10 @@ void tambah_tugas(){
     hash_table(nama_tugas,nama_mapel,deadline,bbt);
 }
 
+int hitung_indeks(char nama_tugas[20]){
+    
+}
+
 void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
     Tugas *newnode=(Tugas*) malloc(sizeof(Tugas));
     strcpy(newnode->nama_tugas,nama_tugas);
