@@ -189,25 +189,29 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
 }
 
 void hapus_di_heap(Tugas *temp){
-    int idx;
+    int idx = -1;
     for (idx = 0; idx < banyak_tugas; idx++)
     { if (strcasecmp(arr_heap[idx]->nama_tugas,temp->nama_tugas) == 0){ break; } }
 
-    arr_heap[idx] = arr_heap[banyak_tugas - 1];
-    arr_heap[banyak_tugas - 1] = NULL;
-
-    if (arr_heap[2*idx+1]!=NULL || arr_heap[2*idx+2]!=NULL )
-    { min_heap(idx); }
+    if (idx != -1)
+    {
+        arr_heap[idx] = arr_heap[banyak_tugas - 1];
+        arr_heap[banyak_tugas - 1] = NULL;
+        if (idx != banyak_tugas - 1)
+        { 
+            up_heap(idx);
+            min_heap(idx); 
+        }
+    }
 }
 
-void up_heap(){
+void up_heap(int idx){
     if (banyak_tugas == 0)
     { return; }
 
-    int idx = banyak_tugas;
     int parent = (idx - 1) / 2;
     Tugas *temp;
-    while (arr_heap[idx]->deadline < arr_heap[parent]->deadline)
+    while (idx > 0 && arr_heap[idx]->deadline < arr_heap[parent]->deadline)
     {
         temp = arr_heap[parent];
         arr_heap[parent] = arr_heap[idx];
@@ -223,14 +227,14 @@ void min_heap(int idx){
     int min = idx;
     int ada = 1;
     Tugas *temp;
-   while (ada && (arr_heap[left_child]!=NULL || arr_heap[right_child]!=NULL))
+   while (ada)
    {    
-        if (left_child < banyak_tugas - 1 && arr_heap[left_child] != NULL) 
+        if (left_child < banyak_tugas && arr_heap[left_child] != NULL) 
         {
             if (arr_heap[left_child]->deadline < arr_heap[min]->deadline) 
             { min = left_child; }
         }
-        if (right_child < banyak_tugas - 1 && arr_heap[right_child] != NULL) 
+        if (right_child < banyak_tugas && arr_heap[right_child] != NULL) 
         {
             if (arr_heap[right_child]->deadline < arr_heap[min]->deadline) 
             { min = right_child; }
@@ -241,6 +245,8 @@ void min_heap(int idx){
             arr_heap[idx] = arr_heap[min];
             arr_heap[min] = temp;
             idx = min; 
+            left_child = 2*idx + 1;
+            right_child = 2*idx +2;
         } 
         else { ada = 0; }   
    }

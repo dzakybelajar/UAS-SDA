@@ -25,7 +25,7 @@ void hapus_tugas();
 void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt);
 int hitung_indeks(char nama_tugas[]);
 void lihat_tugas_paling_mendesak();
-void up_heap();
+void up_heap(int idx);
 void min_heap(int idx);
 void hapus_di_heap(Tugas *temp);
 void urutkan_tugas_berdasarkan_bobot_nilai();
