@@ -110,6 +110,7 @@ void hapus_tugas(){
     }
     if (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) == 0)
     {
+        hapus_di_heap(temp1);
         if (temp1 == tugas[indeks])
         {
             tugas[indeks] = temp1->next;
@@ -118,18 +119,10 @@ void hapus_tugas(){
         }
         else
         {
-            if (temp1->next == NULL)
-            {
-                temp2->next = NULL;
-                free(temp1);
-                ketemu = 1;
-            }
-            else
-            {
-                temp2->next = temp1->next;
-                free(temp1);
-                ketemu = 1;
-            }
+            if (temp1->next == NULL) { temp2->next = NULL; }
+            else { temp2->next = temp1->next; }
+            free(temp1);
+            ketemu = 1;
         }     
     }
     if (ketemu == 1)
@@ -198,6 +191,14 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     printf("\n");
 }
 
+void hapus_di_heap(Tugas *temp){
+    int idx;
+    for (idx = 0; idx < banyak_tugas; idx++)
+    { if (arr_heap[idx] == temp){ break; } }
+    arr_heap[idx] = arr_heap[banyak_tugas];
+    free(arr_heap[banyak_tugas]);
+}
+
 void up_heap(){
     if (banyak_tugas == 0)
     { return; }
@@ -207,9 +208,9 @@ void up_heap(){
     Tugas *temp;
     while (arr_heap[idx] < arr_heap[parent])
     {
-        *temp = *arr_heap[parent];
-        *arr_heap[parent] = *arr_heap[idx];
-        *arr_heap[idx] = *temp;
+        temp = arr_heap[parent];
+        arr_heap[parent] = arr_heap[idx];
+        arr_heap[idx] = temp;
         idx = (parent) / 2;
     }
 }
