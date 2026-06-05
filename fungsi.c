@@ -71,7 +71,7 @@ void cari_tugas(){
     if (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) == 0)
     { 
         int tgl = temp1->deadline % 100;
-        int bln = temp1->deadline / 100;
+        int bln = ((temp1->deadline % 10000) - tgl) / 100;
         int thn = temp1->deadline / 10000;
         printf("Nama tugas: %s\n", temp1->nama_tugas);
         printf("Nama mata pelajaran: %s\n",temp1->nama_mapel);
@@ -181,7 +181,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     printf("\n=== Urutan tugas berdasarkan bobot tertinggi ===\n");
     for (int i = 0; i < count; i++) {
         int tgl = daftar[i]->deadline % 100;
-        int bln = daftar[i]->deadline / 100;
+        int bln = ((daftar[i]->deadline % 10000) - tgl) / 100;
         int thn = daftar[i]->deadline / 10000;
         printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d-%d\n", i+1, 
                daftar[i]->nama_tugas, 
