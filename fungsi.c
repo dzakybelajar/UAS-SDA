@@ -1,24 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
-#include"header.h"
+#include "header.h"
 
-typedef struct Tugas
-{
-    int id_tugas;
-    char nama_tugas[20];
-    char nama_mapel[20];
-    int bobot;
-    int deadline;
-    struct Tugas *next;
-}Tugas;
-
-int banyak_tugas=0;
-int id=0;
-char persen='%'; 
-
-Tugas *tugas[size_hash_table]; 
+Tugas *tugas[size_hash_table];
+int banyak_tugas = 0;
+int id = 0;
+char persen = '%'; 
 
 void tambah_tugas(){
     char nama_tugas[20];
@@ -43,6 +28,25 @@ void tambah_tugas(){
     hash_table(nama_tugas,nama_mapel,deadline,bbt);
 }
 
+void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
+    Tugas *newnode=(Tugas*) malloc(sizeof(Tugas));
+    newnode->id_tugas = id;
+    strcpy(newnode->nama_tugas,nama_tugas);
+    strcpy(newnode->nama_mapel,nama_mapel);
+    newnode->bobot=bbt;
+    newnode->deadline=ddline;
+     
+    int indeks;
+    indeks = id % size_hash_table;
+    newnode->next = tugas[indeks];
+    tugas[indeks] = newnode;
+    banyak_tugas++; 
+    printf("tugas:%s\n",nama_tugas);
+    printf("mata pelajaran:%s\n",nama_mapel);
+    printf("id tugas:%d\n",newnode->id_tugas);
+    printf("berhasil ditambah!\n");
+}
+
 void cari_tugas(){
     char nt[20];
     int ketemu=0;
@@ -63,10 +67,10 @@ void cari_tugas(){
         { 
             int tgl=temp1->deadline%100;
             int bln=temp1->deadline/100;
-            printf("nama tugas: %s",temp1->nama_tugas);
-            printf("nama mata pelajaran: %s",temp1->nama_mapel);
-            printf("bobot: %d persen",temp1->bobot);
-            printf("deadline: %d-%d",tgl,bln);  
+            printf("nama tugas: %s\n",temp1->nama_tugas);
+            printf("nama mata pelajaran: %s\n",temp1->nama_mapel);
+            printf("bobot: %d persen\n",temp1->bobot);
+            printf("deadline: %d-%d\n",tgl,bln);  
             ketemu=1;
             break;
         }
@@ -74,25 +78,6 @@ void cari_tugas(){
 
     if (ketemu==0)
     { printf("tugas tidak ditemukan!\n"); }
-}
-
-void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
-    Tugas *newnode=(Tugas*) malloc(sizeof(Tugas));
-    newnode->id_tugas = id;
-    strcpy(newnode->nama_tugas,nama_tugas);
-    strcpy(newnode->nama_mapel,nama_mapel);
-    newnode->bobot=bbt;
-    newnode->deadline=ddline;
-     
-    int indeks;
-    indeks = id % size_hash_table;
-    newnode->next = tugas[indeks];
-    tugas[indeks] = newnode;
-    banyak_tugas++; 
-    printf("tugas:%s\n",nama_tugas);
-    printf("mata pelajaran:%s\n",nama_mapel);
-    printf("id tugas:%d\n",newnode->id_tugas);
-    printf("berhasil ditambah!\n");
 }
 
 void hapus_tugas(){
@@ -148,10 +133,65 @@ void hapus_tugas(){
     { printf("tugas tidak ditemukan!\n"); }
 }
 
-void lihat_tugas_paling_mendesak(){
-    printf("Fungsi lihat_tugas_paling_mendesak berhasil dipanggil!\n");
+void tukar_tugas(Tugas **a, Tugas **b) {
+    Tugas *temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-void urutkan_tugas_berdasarkan_bobot_nilai(){
-    printf("Fungsi urutkan_tugas_berdasarkan_bobot_nilai berhasil dipanggil!\n");
+int partisi_bobot(Tugas **arr, int low, int high) {
+    int pivot = arr[high]->bobot;
+    int i = low - 1;
+    
+    for (int j = low; j < high; j++) {
+        if (arr[j]->bobot >= pivot) {
+            i++;
+            tukar_tugas(&arr[i], &arr[j]);
+        }
+    }
+    tukar_tugas(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quick_sort_bobot(Tugas **arr, int low, int high) {
+    if (low < high) {
+        int pi = partisi_bobot(arr, low, high);
+        quick_sort_bobot(arr, low, pi - 1);
+        quick_sort_bobot(arr, pi + 1, high);
+    }
+}
+
+void urutkan_tugas_berdasarkan_bobot_nilai() {
+    if (banyak_tugas == 0) {
+        printf("tidak ada tugas!\n");
+        return;
+    }
+    
+    Tugas *daftar[MAX_TUGAS];
+    int count = 0;
+    
+    for (int i = 0; i < size_hash_table; i++) {
+        Tugas *temp = tugas[i];
+        while (temp != NULL) {
+            daftar[count++] = temp;
+            temp = temp->next;
+        }
+    }
+    
+    quick_sort_bobot(daftar, 0, count - 1);
+    printf("\n=== Urutan tugas berdasarkan bobot tertinggi ===\n");
+    for (int i = 0; i < count; i++) {
+        int tgl = daftar[i]->deadline % 100;
+        int bln = daftar[i]->deadline / 100;
+        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d\n", 
+               i+1, 
+               daftar[i]->nama_tugas, 
+               daftar[i]->nama_mapel, 
+               daftar[i]->bobot,
+               tgl, bln);
+    }
+}
+
+void lihat_tugas_paling_mendesak(){
+    printf("Fungsi lihat_tugas_paling_mendesak berhasil dipanggil!\n");
 }

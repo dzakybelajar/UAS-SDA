@@ -1,5 +1,4 @@
-#include<stdio.h>
-#include"header.h"
+#include "header.h"
 
 void menu_utama(){
     int pilihan;
