@@ -51,14 +51,14 @@ void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
     banyak_tugas++; 
     printf("Tugas:%s\n", nama_tugas);
     printf("Mata pelajaran:%s\n", nama_mapel);
-    printf("Berhasil ditambah!\n");
+    printf("Berhasil ditambah!\n\n");
 }
 
 void cari_tugas(){
     char nt[20];
     int ketemu = 0;
     if (banyak_tugas == 0)
-    { printf("Tidak ada tugas!\n"); return; }
+    { printf("Tidak ada tugas!\n\n"); return; }
 
     printf("Masukkan nama tugas: ");
     fgets(nt, 20, stdin);
@@ -76,18 +76,18 @@ void cari_tugas(){
         printf("Nama tugas: %s\n", temp1->nama_tugas);
         printf("Nama mata pelajaran: %s\n",temp1->nama_mapel);
         printf("Bobot: %d%%\n", temp1->bobot);
-        printf("Deadline: %d-%d-%d\n", tgl, bln, thn);  
+        printf("Deadline: %d-%d-%d\n\n", tgl, bln, thn);  
         ketemu = 1;
     }
     if (ketemu == 0)
-    { printf("Tugas tidak ditemukan!\n"); }
+    { printf("Tugas tidak ditemukan!\n\n"); }
 }
 
 void hapus_tugas(){
     char nt[20];
     int ketemu = 0;
     if (banyak_tugas == 0)
-    { printf("Tidak ada tugas!\n"); return; }
+    { printf("Tidak ada tugas!\n\n"); return; }
 
     printf("Masukkan nama tugas:");
     fgets(nt, 20, stdin);
@@ -127,9 +127,9 @@ void hapus_tugas(){
     }
     
     if (ketemu == 1)
-    {  printf("Tugas berhasil dihapus!\n"); banyak_tugas--; }
+    {  printf("Tugas berhasil dihapus!\n\n"); banyak_tugas--; }
     else
-    { printf("Tugas tidak ditemukan!\n"); }
+    { printf("Tugas tidak ditemukan!\n\n"); }
 }
 
 void tukar_tugas(Tugas **a, Tugas **b) {
@@ -162,7 +162,7 @@ void quick_sort_bobot(Tugas **arr, int low, int high) {
 
 void urutkan_tugas_berdasarkan_bobot_nilai() {
     if (banyak_tugas == 0) {
-        printf("Tidak ada tugas!\n");
+        printf("Tidak ada tugas!\n\n");
         return;
     }
     
@@ -189,6 +189,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
                daftar[i]->bobot,
                tgl, bln, thn);
     }
+    printf("\n");
 }
 
 void lihat_tugas_paling_mendesak(){
