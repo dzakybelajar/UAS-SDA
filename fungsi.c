@@ -1,7 +1,6 @@
 #include "header.h"
 
 int banyak_tugas = 0;
-
 Tugas *tugas[size_hash_table];
 
 void tambah_tugas(){
