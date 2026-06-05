@@ -184,8 +184,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     for (int i = 0; i < count; i++) {
         int tgl = daftar[i]->deadline % 100;
         int bln = daftar[i]->deadline / 100;
-        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d\n", 
-               i+1, 
+        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d\n", i+1, 
                daftar[i]->nama_tugas, 
                daftar[i]->nama_mapel, 
                daftar[i]->bobot,
