@@ -30,11 +30,11 @@ void tambah_tugas(){
 }
 
 int hitung_indeks(char nama_tugas[]){
-    int i=0;
-    int idx=0;
-    while (nama_tugas[i]!='\0')
-    { idx+=tolower(nama_tugas[i]); i++; }
-    idx=idx%size_hash_table;
+    int i = 0;
+    int idx = 0;
+    while (nama_tugas[i] != '\0')
+    { idx += tolower(nama_tugas[i]); i++; }
+    idx = idx % size_hash_table;
     return idx;
 }
 
