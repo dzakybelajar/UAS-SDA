@@ -27,8 +27,9 @@ void tambah_tugas(){
     hash_table(nama_tugas,nama_mapel,deadline,bbt);
 }
 
-int hitung_indeks(char nama_tugas[20]){
-    
+int hitung_indeks(char nama_tugas[]){
+
+    return 1;
 }
 
 void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
