@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include<ctype.h>
 
 #define size_hash_table 13
 #define MAX_TUGAS 100
