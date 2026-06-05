@@ -1,9 +1,10 @@
 #include "header.h"
 
-Tugas *tugas[size_hash_table];
 int banyak_tugas = 0;
 int id = 0;
 char persen = '%'; 
+
+Tugas *tugas[size_hash_table];
 
 void tambah_tugas(){
     char nama_tugas[20];
