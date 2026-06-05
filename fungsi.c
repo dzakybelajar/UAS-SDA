@@ -1,7 +1,9 @@
 #include "header.h"
 
 int banyak_tugas = 0;
+int heap = 0;
 Tugas *tugas[size_hash_table];
+Tugas *arr_heap[MAX_TUGAS];
 
 void tambah_tugas(){
     char nama_tugas[20];
@@ -46,6 +48,13 @@ void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
     int indeks = hitung_indeks(nama_tugas);
     newnode->next = tugas[indeks];
     tugas[indeks] = newnode;
+
+    strcpy(arr_heap[banyak_tugas]->nama_tugas,nama_tugas);
+    strcpy(arr_heap[banyak_tugas]->nama_mapel,nama_mapel);
+    arr_heap[banyak_tugas]->bobot = bbt;
+    arr_heap[banyak_tugas]->deadline = ddline;
+    up_heap(banyak_tugas);
+
     banyak_tugas++; 
     printf("Tugas:%s\n", nama_tugas);
     printf("Mata pelajaran:%s\n", nama_mapel);
@@ -189,6 +198,24 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     printf("\n");
 }
 
+void up_heap(){
+
+}
+
+void min_heap(){
+    
+}
+
 void lihat_tugas_paling_mendesak(){
-    printf("Fungsi lihat_tugas_paling_mendesak berhasil dipanggil!\n");
+    if (banyak_tugas==0)
+    { printf("tidak ada tugas!\n"); return; }
+
+    int tgl = arr_heap[0]->deadline % 100;
+    int bln = ((arr_heap[0]->deadline % 10000) - tgl) / 100;
+    int thn = arr_heap[0]->deadline / 10000;
+    printf("===tugas yang paling mendesak===\n");
+    printf("nama tugas: %s\n",arr_heap[0]->nama_tugas);
+    printf("nama mapel: %s\n",arr_heap[0]->nama_mapel);
+    printf("bobot: %d%%\n",arr_heap[0]->bobot);
+    printf("deadline: %d-%d-%d\n\n", tgl, bln, thn);
 }
