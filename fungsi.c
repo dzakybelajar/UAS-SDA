@@ -28,8 +28,11 @@ void tambah_tugas(){
 }
 
 int hitung_indeks(char nama_tugas[]){
-
-    return 1;
+    int i=0;
+    int idx=0;
+    while (nama_tugas[i]!='\0')
+    { idx+=nama_tugas[i]; i++; }
+    return idx;
 }
 
 void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
