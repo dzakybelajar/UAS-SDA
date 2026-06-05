@@ -32,6 +32,7 @@ int hitung_indeks(char nama_tugas[]){
     int idx=0;
     while (nama_tugas[i]!='\0')
     { idx+=nama_tugas[i]; i++; }
+    idx=idx%size_hash_table;
     return idx;
 }
 
