@@ -207,7 +207,7 @@ void up_heap(){
     int idx = banyak_tugas;
     int parent = (idx - 1) / 2;
     Tugas *temp;
-    while (parent >= 0 && arr_heap[idx]->deadline < arr_heap[parent]->deadline)
+    while (arr_heap[idx]->deadline < arr_heap[parent]->deadline)
     {
         temp = arr_heap[parent];
         arr_heap[parent] = arr_heap[idx];
@@ -220,12 +220,29 @@ void up_heap(){
 void min_heap(int idx){
     int left_child = 2*idx + 1;
     int right_child = 2*idx + 2;
+    int min = idx;
     int ada = 1;
     Tugas *temp;
-   while (ada)
-   {
-        
-        else { ada = 0; }
+   while (ada && (arr_heap[left_child]!=NULL || arr_heap[right_child]!=NULL))
+   {    
+        if (left_child < banyak_tugas - 1 && arr_heap[left_child] != NULL) 
+        {
+            if (arr_heap[left_child]->deadline < arr_heap[min]->deadline) 
+            { min = left_child; }
+        }
+        if (right_child < banyak_tugas - 1 && arr_heap[right_child] != NULL) 
+        {
+            if (arr_heap[right_child]->deadline < arr_heap[min]->deadline) 
+            { min = right_child; }
+        }
+        if (min != idx) 
+        {
+            temp = arr_heap[idx];
+            arr_heap[idx] = arr_heap[min];
+            arr_heap[min] = temp;
+            idx = min; 
+        } 
+        else { ada = 0; }   
    }
 }
 
