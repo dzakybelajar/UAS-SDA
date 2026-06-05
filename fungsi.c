@@ -191,10 +191,10 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     printf("\n");
 }
 
-void hapus_di_heap(Tugas **temp){
+void hapus_di_heap(Tugas *temp){
     int idx;
     for (idx = 0; idx < banyak_tugas; idx++)
-    { if (arr_heap[idx] == temp){ break; } }
+    { if (strcasecmp(arr_heap[idx]->nama_tugas,temp->nama_tugas) == 0){ break; } }
     arr_heap[idx] = arr_heap[banyak_tugas];
     free(arr_heap[banyak_tugas]);
     min_heap(idx);
@@ -216,7 +216,7 @@ void up_heap(){
     }
 }
 
-void min_heap(idx){
+void min_heap(int idx){
     int left_child = 2*idx + 1;
     int right_child = 2*idx + 2;
     int ada = 1;
@@ -225,14 +225,14 @@ void min_heap(idx){
    {
         if (arr_heap[idx]->deadline < arr_heap[left_child]->deadline)
         {
-            temp = arr_heap[idx]->deadline;
+            temp = arr_heap[idx];
             arr_heap[idx] = arr_heap[left_child];
             arr_heap[left_child] = temp;
             continue;
         }
         else if (arr_heap[idx]->deadline < arr_heap[right_child]->deadline)
         {
-            temp = arr_heap[idx]->deadline;
+            temp = arr_heap[idx];
             arr_heap[idx] = arr_heap[right_child];
             arr_heap[right_child] = temp;
             continue;

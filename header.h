@@ -27,7 +27,7 @@ int hitung_indeks(char nama_tugas[]);
 void lihat_tugas_paling_mendesak();
 void up_heap();
 void min_heap(int idx);
-void hapus_di_heap(Tugas **temp);
+void hapus_di_heap(Tugas *temp);
 void urutkan_tugas_berdasarkan_bobot_nilai();
 void tukar_tugas(Tugas **a, Tugas **b);
 int partisi_bobot(Tugas **arr, int low, int high);
