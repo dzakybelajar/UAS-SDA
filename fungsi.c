@@ -6,7 +6,7 @@ Tugas *tugas[size_hash_table];
 void tambah_tugas(){
     char nama_tugas[20];
     char nama_mapel[20];
-    int bbt, tgl, bln, thn,deadline;
+    int bbt, tgl, bln, thn, deadline;
 
     printf("Masukkan nama tugas: ");
     fgets(nama_tugas, 20, stdin);
@@ -123,7 +123,6 @@ void hapus_tugas(){
             }
         }     
     }
-    
     if (ketemu == 1)
     {  printf("Tugas berhasil dihapus!\n\n"); banyak_tugas--; }
     else

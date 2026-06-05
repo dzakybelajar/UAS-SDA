@@ -18,7 +18,6 @@ typedef struct Tugas {
     struct Tugas *next;
 } Tugas;
 
-
 void menu_utama();
 void tambah_tugas();
 void cari_tugas();
