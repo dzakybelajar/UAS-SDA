@@ -63,7 +63,7 @@ void cari_tugas(){
         int bln=temp1->deadline/100;
         printf("nama tugas: %s\n",temp1->nama_tugas);
         printf("nama mata pelajaran: %s\n",temp1->nama_mapel);
-        printf("bobot: %d persen\n",temp1->bobot);
+        printf("bobot: %d%%\n",temp1->bobot);
         printf("deadline: %d-%d\n",tgl,bln);  
         ketemu=1;
     }
