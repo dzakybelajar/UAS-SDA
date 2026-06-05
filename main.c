@@ -5,16 +5,16 @@ void menu_utama(){
     do
     {
         pilihan=0;
-        printf("====menu====\n");
-        printf("1.Tambah tugas\n");
-        printf("2.Cari tugas\n");
-        printf("3.Hapus tugas\n");
-        printf("4.Lihat tugas paling mendesak\n");
-        printf("5.Urutkan tugas berdasarkan bobot nilai\n");
-        printf("6.keluar\n");
-        printf("pilih menu:");
-        scanf("%d",&pilihan);
-        while (getchar()!='\n'); 
+        printf("====MENU====\n");
+        printf("1. Tambah tugas\n");
+        printf("2. Cari tugas\n");
+        printf("3. Hapus tugas\n");
+        printf("4. Lihat tugas paling mendesak\n");
+        printf("5. Urutkan tugas berdasarkan bobot nilai\n");
+        printf("6. Keluar\n");
+        printf("Pilih menu: ");
+        scanf("%d", &pilihan);
+        while (getchar() != '\n'); 
         switch (pilihan)
         {
         case 1:
@@ -39,7 +39,7 @@ void menu_utama(){
             printf("input tidak valid!\n");
             break;
         }
-    } while (pilihan!=6);
+    } while (pilihan != 6);
 }
 
 int main(){
