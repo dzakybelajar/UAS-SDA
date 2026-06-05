@@ -1,7 +1,6 @@
 #include "header.h"
 
 int banyak_tugas = 0;
-char persen = '%'; 
 
 Tugas *tugas[size_hash_table];
 
