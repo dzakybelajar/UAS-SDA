@@ -10,118 +10,118 @@ void tambah_tugas(){
     char nama_mapel[20];
     int bbt, tgl, bln, deadline;
 
-    printf("masukkan nama tugas:");
-    fgets(nama_tugas,20,stdin);
-    nama_tugas[strcspn(nama_tugas,"\n")]=0;
-    printf("masukkan nama mapel:");
-    fgets(nama_mapel,20,stdin);
-    nama_mapel[strcspn(nama_mapel,"\n")]=0;
-    printf("masukkan bobot tugas dalam persen(tanpa tanda persen):");
-    scanf("%d",&bbt);
-    printf("masukkan deadline tugas!\n");
-    printf("tanggal(contoh: 3, 12):");
-    scanf("%d",&tgl);
-    printf("bulan(contoh: 2, 12):");
-    scanf("%d",&bln);
+    printf("Masukkan nama tugas: ");
+    fgets(nama_tugas, 20, stdin);
+    nama_tugas[strcspn(nama_tugas,"\n")] = 0;
+    printf("Masukkan nama mapel: ");
+    fgets(nama_mapel, 20, stdin);
+    nama_mapel[strcspn(nama_mapel,"\n")] = 0;
+    printf("Masukkan bobot tugas dalam persen(tanpa tanda persen): ");
+    scanf("%d", &bbt);
+    printf("Masukkan deadline tugas!\n");
+    printf("Tanggal(contoh: 3, 12): ");
+    scanf("%d", &tgl);
+    printf("Bulan(contoh: 2, 12): ");
+    scanf("%d", &bln);
     deadline = bln*100 + tgl;
-    hash_table(nama_tugas,nama_mapel,deadline,bbt);
+    hash_table(nama_tugas, nama_mapel,deadline,bbt);
 }
 
 int hitung_indeks(char nama_tugas[20]){
     
 }
 
-void hash_table(char nama_tugas[],char nama_mapel[],int ddline,int bbt){
-    Tugas *newnode=(Tugas*) malloc(sizeof(Tugas));
-    strcpy(newnode->nama_tugas,nama_tugas);
-    strcpy(newnode->nama_mapel,nama_mapel);
-    newnode->bobot=bbt;
-    newnode->deadline=ddline;
+void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
+    Tugas *newnode = (Tugas*) malloc(sizeof(Tugas));
+    strcpy(newnode->nama_tugas, nama_tugas);
+    strcpy(newnode->nama_mapel, nama_mapel);
+    newnode->bobot = bbt;
+    newnode->deadline = ddline;
      
-    int indeks=hitung_indeks(nama_tugas);
+    int indeks = hitung_indeks(nama_tugas);
     newnode->next = tugas[indeks];
     tugas[indeks] = newnode;
     banyak_tugas++; 
-    printf("tugas:%s\n",nama_tugas);
-    printf("mata pelajaran:%s\n",nama_mapel);
-    printf("berhasil ditambah!\n");
+    printf("Tugas:%s\n", nama_tugas);
+    printf("Mata pelajaran:%s\n", nama_mapel);
+    printf("Berhasil ditambah!\n");
 }
 
 void cari_tugas(){
     char nt[20];
-    int ketemu=0;
-    if (banyak_tugas==0)
-    { printf("tidak ada tugas!\n"); return; }
+    int ketemu = 0;
+    if (banyak_tugas == 0)
+    { printf("Tidak ada tugas!\n"); return; }
 
-    printf("masukkan nama tugas:");
-    fgets(nt,20,stdin);
-    nt[strcspn(nt,"\n")]=0;
+    printf("Masukkan nama tugas: ");
+    fgets(nt, 20, stdin);
+    nt[strcspn(nt,"\n")] = 0;
 
-    int indeks=hitung_indeks(nt);
-    Tugas *temp1=tugas[indeks];
-    while (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)!=0)
-    { temp1=temp1->next; }
-    if (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)==0)
+    int indeks = hitung_indeks(nt);
+    Tugas *temp1 = tugas[indeks];
+    while (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) != 0)
+    { temp1 = temp1->next; }
+    if (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) == 0)
     { 
-        int tgl=temp1->deadline%100;
-        int bln=temp1->deadline/100;
-        printf("nama tugas: %s\n",temp1->nama_tugas);
-        printf("nama mata pelajaran: %s\n",temp1->nama_mapel);
-        printf("bobot: %d%%\n",temp1->bobot);
-        printf("deadline: %d-%d\n",tgl,bln);  
-        ketemu=1;
+        int tgl = temp1->deadline % 100;
+        int bln = temp1->deadline / 100;
+        printf("Nama tugas: %s\n", temp1->nama_tugas);
+        printf("Nama mata pelajaran: %s\n",temp1->nama_mapel);
+        printf("Bobot: %d%%\n", temp1->bobot);
+        printf("Deadline: %d-%d\n", tgl, bln);  
+        ketemu = 1;
     }
-    if (ketemu==0)
-    { printf("tugas tidak ditemukan!\n"); }
+    if (ketemu == 0)
+    { printf("Tugas tidak ditemukan!\n"); }
 }
 
 void hapus_tugas(){
     char nt[20];
-    int ketemu=0;
-    if (banyak_tugas==0)
-    { printf("tidak ada tugas!\n"); return; }
+    int ketemu = 0;
+    if (banyak_tugas == 0)
+    { printf("Tidak ada tugas!\n"); return; }
 
-    printf("masukkan nama tugas:");
-    fgets(nt,20,stdin);
-    nt[strcspn(nt,"\n")]=0;
+    printf("Masukkan nama tugas:");
+    fgets(nt, 20, stdin);
+    nt[strcspn(nt,"\n")] = 0;
 
-    int indeks=hitung_indeks(nt);  
-    Tugas *temp1=tugas[indeks];
+    int indeks = hitung_indeks(nt);  
+    Tugas *temp1 = tugas[indeks];
     Tugas *temp2;
-    while (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)!=0)
+    while (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) != 0)
     { 
-        temp2=temp1;
-        temp1=temp1->next;
+        temp2 = temp1;
+        temp1 = temp1->next;
     }
-    if (temp1!=NULL && strcasecmp(temp1->nama_tugas,nt)==0)
+    if (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) == 0)
     {
-        if (temp1==tugas[indeks])
+        if (temp1 == tugas[indeks])
         {
-            tugas[indeks]=temp1->next;
+            tugas[indeks] = temp1->next;
             free(temp1);
-            ketemu=1;
+            ketemu = 1;
         }
         else
         {
-            if (temp1->next==NULL)
+            if (temp1->next == NULL)
             {
-                temp2->next=NULL;
+                temp2->next = NULL;
                 free(temp1);
-                ketemu=1;
+                ketemu = 1;
             }
             else
             {
-                temp2->next=temp1->next;
+                temp2->next = temp1->next;
                 free(temp1);
-                ketemu=1;
+                ketemu = 1;
             }
         }     
     }
     
-    if (ketemu==1)
-    {  printf("tugas berhasil dihapus!\n"); banyak_tugas--; }
+    if (ketemu == 1)
+    {  printf("Tugas berhasil dihapus!\n"); banyak_tugas--; }
     else
-    { printf("tugas tidak ditemukan!\n"); }
+    { printf("Tugas tidak ditemukan!\n"); }
 }
 
 void tukar_tugas(Tugas **a, Tugas **b) {
@@ -154,7 +154,7 @@ void quick_sort_bobot(Tugas **arr, int low, int high) {
 
 void urutkan_tugas_berdasarkan_bobot_nilai() {
     if (banyak_tugas == 0) {
-        printf("tidak ada tugas!\n");
+        printf("Tidak ada tugas!\n");
         return;
     }
     
