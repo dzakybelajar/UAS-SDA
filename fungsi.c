@@ -191,12 +191,13 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     printf("\n");
 }
 
-void hapus_di_heap(Tugas *temp){
+void hapus_di_heap(Tugas **temp){
     int idx;
     for (idx = 0; idx < banyak_tugas; idx++)
     { if (arr_heap[idx] == temp){ break; } }
     arr_heap[idx] = arr_heap[banyak_tugas];
     free(arr_heap[banyak_tugas]);
+    min_heap(idx);
 }
 
 void up_heap(){
@@ -206,7 +207,7 @@ void up_heap(){
     int idx = banyak_tugas;
     int parent = (idx-1)/2;
     Tugas *temp;
-    while (arr_heap[idx] < arr_heap[parent])
+    while (arr_heap[idx]->deadline < arr_heap[parent]->deadline)
     {
         temp = arr_heap[parent];
         arr_heap[parent] = arr_heap[idx];
@@ -215,8 +216,29 @@ void up_heap(){
     }
 }
 
-void min_heap(){
-
+void min_heap(idx){
+    int left_child = 2*idx + 1;
+    int right_child = 2*idx + 2;
+    int ada = 1;
+    Tugas *temp;
+   while (ada)
+   {
+        if (arr_heap[idx]->deadline < arr_heap[left_child]->deadline)
+        {
+            temp = arr_heap[idx]->deadline;
+            arr_heap[idx] = arr_heap[left_child];
+            arr_heap[left_child] = temp;
+            continue;
+        }
+        else if (arr_heap[idx]->deadline < arr_heap[right_child]->deadline)
+        {
+            temp = arr_heap[idx]->deadline;
+            arr_heap[idx] = arr_heap[right_child];
+            arr_heap[right_child] = temp;
+            continue;
+        }
+        else { ada = 0; }
+   }
 }
 
 void lihat_tugas_paling_mendesak(){
