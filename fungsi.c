@@ -8,7 +8,7 @@ Tugas *tugas[size_hash_table];
 void tambah_tugas(){
     char nama_tugas[20];
     char nama_mapel[20];
-    int bbt, tgl, bln, deadline;
+    int bbt, tgl, bln, thn,deadline;
 
     printf("Masukkan nama tugas: ");
     fgets(nama_tugas, 20, stdin);
@@ -23,7 +23,9 @@ void tambah_tugas(){
     scanf("%d", &tgl);
     printf("Bulan(contoh: 2, 12): ");
     scanf("%d", &bln);
-    deadline = bln*100 + tgl;
+    printf("tahun: ");
+    scanf("%d",&thn);
+    deadline = thn*10000 + bln*100 + tgl;
     hash_table(nama_tugas, nama_mapel,deadline,bbt);
 }
 
@@ -70,10 +72,11 @@ void cari_tugas(){
     { 
         int tgl = temp1->deadline % 100;
         int bln = temp1->deadline / 100;
+        int thn = temp1->deadline / 10000;
         printf("Nama tugas: %s\n", temp1->nama_tugas);
         printf("Nama mata pelajaran: %s\n",temp1->nama_mapel);
         printf("Bobot: %d%%\n", temp1->bobot);
-        printf("Deadline: %d-%d\n", tgl, bln);  
+        printf("Deadline: %d-%d-%d\n", tgl, bln, thn);  
         ketemu = 1;
     }
     if (ketemu == 0)
@@ -179,11 +182,12 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     for (int i = 0; i < count; i++) {
         int tgl = daftar[i]->deadline % 100;
         int bln = daftar[i]->deadline / 100;
-        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d\n", i+1, 
+        int thn = daftar[i]->deadline / 10000;
+        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d-%d\n", i+1, 
                daftar[i]->nama_tugas, 
                daftar[i]->nama_mapel, 
                daftar[i]->bobot,
-               tgl, bln);
+               tgl, bln, thn);
     }
 }
 
