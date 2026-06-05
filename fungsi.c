@@ -199,23 +199,35 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
 }
 
 void up_heap(){
+    if (banyak_tugas == 0)
+    { return; }
 
+    int idx = banyak_tugas;
+    int parent = (idx-1)/2;
+    Tugas *temp;
+    while (arr_heap[idx] < arr_heap[parent])
+    {
+        *temp = *arr_heap[parent];
+        *arr_heap[parent] = *arr_heap[idx];
+        *arr_heap[idx] = *temp;
+        idx = (parent) / 2;
+    }
 }
 
 void min_heap(){
-    
+
 }
 
 void lihat_tugas_paling_mendesak(){
-    if (banyak_tugas==0)
+    if (banyak_tugas == 0)
     { printf("tidak ada tugas!\n"); return; }
 
     int tgl = arr_heap[0]->deadline % 100;
     int bln = ((arr_heap[0]->deadline % 10000) - tgl) / 100;
     int thn = arr_heap[0]->deadline / 10000;
     printf("===tugas yang paling mendesak===\n");
-    printf("nama tugas: %s\n",arr_heap[0]->nama_tugas);
-    printf("nama mapel: %s\n",arr_heap[0]->nama_mapel);
-    printf("bobot: %d%%\n",arr_heap[0]->bobot);
+    printf("nama tugas: %s\n", arr_heap[0]->nama_tugas);
+    printf("nama mapel: %s\n", arr_heap[0]->nama_mapel);
+    printf("bobot: %d%%\n", arr_heap[0]->bobot);
     printf("deadline: %d-%d-%d\n\n", tgl, bln, thn);
 }
