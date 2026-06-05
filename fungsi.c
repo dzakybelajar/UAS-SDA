@@ -49,10 +49,7 @@ void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
     newnode->next = tugas[indeks];
     tugas[indeks] = newnode;
 
-    strcpy(arr_heap[banyak_tugas]->nama_tugas,nama_tugas);
-    strcpy(arr_heap[banyak_tugas]->nama_mapel,nama_mapel);
-    arr_heap[banyak_tugas]->bobot = bbt;
-    arr_heap[banyak_tugas]->deadline = ddline;
+    arr_heap[banyak_tugas] = newnode;
     up_heap(banyak_tugas);
 
     banyak_tugas++; 
@@ -195,9 +192,12 @@ void hapus_di_heap(Tugas *temp){
     int idx;
     for (idx = 0; idx < banyak_tugas; idx++)
     { if (strcasecmp(arr_heap[idx]->nama_tugas,temp->nama_tugas) == 0){ break; } }
-    arr_heap[idx] = arr_heap[banyak_tugas];
-    free(arr_heap[banyak_tugas]);
-    min_heap(idx);
+
+    arr_heap[idx] = arr_heap[banyak_tugas - 1];
+    arr_heap[banyak_tugas - 1] = NULL;
+
+    if (arr_heap[2*idx+1]!=NULL || arr_heap[2*idx+2]!=NULL )
+    { min_heap(idx); }
 }
 
 void up_heap(){
@@ -205,14 +205,15 @@ void up_heap(){
     { return; }
 
     int idx = banyak_tugas;
-    int parent = (idx-1)/2;
+    int parent = (idx - 1) / 2;
     Tugas *temp;
-    while (arr_heap[idx]->deadline < arr_heap[parent]->deadline)
+    while (parent >= 0 && arr_heap[idx]->deadline < arr_heap[parent]->deadline)
     {
         temp = arr_heap[parent];
         arr_heap[parent] = arr_heap[idx];
         arr_heap[idx] = temp;
-        idx = (parent) / 2;
+        idx = parent;
+        parent = (parent - 1) / 2;
     }
 }
 
@@ -223,20 +224,7 @@ void min_heap(int idx){
     Tugas *temp;
    while (ada)
    {
-        if (arr_heap[idx]->deadline < arr_heap[left_child]->deadline)
-        {
-            temp = arr_heap[idx];
-            arr_heap[idx] = arr_heap[left_child];
-            arr_heap[left_child] = temp;
-            continue;
-        }
-        else if (arr_heap[idx]->deadline < arr_heap[right_child]->deadline)
-        {
-            temp = arr_heap[idx];
-            arr_heap[idx] = arr_heap[right_child];
-            arr_heap[right_child] = temp;
-            continue;
-        }
+        
         else { ada = 0; }
    }
 }
