@@ -5,10 +5,30 @@ int heap = 0;
 Tugas *tugas[size_hash_table];
 Tugas *arr_heap[MAX_TUGAS];
 
+// ========== FUNGSI VALIDASI TANGGAL ==========
+int cek_tanggal_valid(int tgl, int bln, int thn) {
+    if (thn < 2024 || thn > 2030) return 0;  // tahun masuk akal
+    
+    if (bln < 1 || bln > 12) return 0;       // bulan 1-12
+    
+    // Jumlah hari per bulan
+    int hari_per_bulan[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    // Cek tahun kabisat
+    if (thn % 400 == 0 || (thn % 4 == 0 && thn % 100 != 0)) {
+        hari_per_bulan[1] = 29;  // Februari kabisat 29 hari
+    }
+    
+    if (tgl < 1 || tgl > hari_per_bulan[bln - 1]) return 0;
+    
+    return 1;
+}
+
 void tambah_tugas(){
     char nama_tugas[20];
     char nama_mapel[20];
     int bbt, tgl, bln, thn, deadline;
+    int valid = 0;
 
     printf("Masukkan Nama Tugas: ");
     fgets(nama_tugas, 20, stdin);
@@ -18,13 +38,24 @@ void tambah_tugas(){
     nama_mapel[strcspn(nama_mapel,"\n")] = 0;
     printf("Masukkan Bobot Tugas Dalam Persen (tanpa tanda persen): ");
     scanf("%d", &bbt);
-    printf("Masukkan Deadline Tugas!\n");
-    printf("Tanggal: ");
-    scanf("%d", &tgl);
-    printf("Bulan: ");
-    scanf("%d", &bln);
-    printf("Tahun: ");
-    scanf("%d", &thn);
+    
+    // Validasi deadline
+    while (!valid) {
+        printf("Masukkan Deadline Tugas!\n");
+        printf("Tanggal: ");
+        scanf("%d", &tgl);
+        printf("Bulan: ");
+        scanf("%d", &bln);
+        printf("Tahun: ");
+        scanf("%d", &thn);
+        
+        if (cek_tanggal_valid(tgl, bln, thn)) {
+            valid = 1;
+        } else {
+            printf("Tanggal tidak valid! Silakan masukkan lagi.\n");
+        }
+    }
+    
     deadline = thn * 10000 + bln * 100 + tgl;
     hash_table(nama_tugas, nama_mapel, deadline, bbt);
 }
@@ -99,7 +130,8 @@ void hapus_tugas(){
 
     int indeks = hitung_indeks(nt);  
     Tugas *temp1 = tugas[indeks];
-    Tugas *temp2;
+    Tugas *temp2 = NULL;  // ✅ DIPERBAIKI: inisialisasi NULL
+    
     while (temp1 != NULL && strcasecmp(temp1->nama_tugas, nt) != 0)
     { 
         temp2 = temp1;
