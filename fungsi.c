@@ -26,7 +26,8 @@ int cek_tanggal_valid(int bbt,int tgl, int bln, int thn) {
 void tambah_tugas(){
     char nama_tugas[20];
     char nama_mapel[20];
-    int bbt, tgl, bln, thn, deadline;
+    float bbt;
+    int tgl, bln, thn, deadline;
     int valid = 0;
 
     printf("Masukkan Nama Tugas: ");
