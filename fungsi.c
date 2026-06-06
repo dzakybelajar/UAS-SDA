@@ -5,7 +5,9 @@ int heap = 0;
 Tugas *tugas[size_hash_table];
 Tugas *arr_heap[MAX_TUGAS];
 
-int cek_tanggal_valid(int tgl, int bln, int thn) {
+int cek_tanggal_valid(int bbt,int tgl, int bln, int thn) {
+    if (bbt < 0 || bbt > 100) return 0;
+    
     if (thn < 2024 || thn > 2030) return 0;  
     
     if (bln < 1 || bln > 12) return 0;     
@@ -33,20 +35,25 @@ void tambah_tugas(){
     printf("Masukkan Nama Mata Kuliah: ");
     fgets(nama_mapel, 20, stdin);
     nama_mapel[strcspn(nama_mapel,"\n")] = 0;
-    printf("Masukkan Bobot Tugas Dalam Persen (tanpa tanda persen): ");
-    scanf("%d", &bbt);
     
     // Validasi deadline
     while (!valid) {
+        bbt = 0, tgl = 0, bln = 0, thn = 0;
+        printf("Masukkan Bobot Tugas Dalam Persen (tanpa tanda persen): ");
+        scanf("%d", &bbt);
+        while(getchar()!='\n');
         printf("Masukkan Deadline Tugas!\n");
         printf("Tanggal: ");
         scanf("%d", &tgl);
+        while(getchar()!='\n');
         printf("Bulan: ");
         scanf("%d", &bln);
+        while(getchar()!='\n');
         printf("Tahun: ");
         scanf("%d", &thn);
+        while(getchar()!='\n');
         
-        if (cek_tanggal_valid(tgl, bln, thn)) {
+        if (cek_tanggal_valid(bbt,tgl, bln, thn)) {
             valid = 1;
         } else {
             printf("Tanggal tidak valid! Silakan masukkan lagi.\n");
