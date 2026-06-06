@@ -19,9 +19,9 @@ void tambah_tugas(){
     printf("Masukkan bobot tugas dalam persen (tanpa tanda persen): ");
     scanf("%d", &bbt);
     printf("Masukkan deadline tugas!\n");
-    printf("Tanggal (contoh: 3, 12): ");
+    printf("Tanggal: ");
     scanf("%d", &tgl);
-    printf("Bulan (contoh: 2, 12): ");
+    printf("Bulan: ");
     scanf("%d", &bln);
     printf("Tahun: ");
     scanf("%d", &thn);
