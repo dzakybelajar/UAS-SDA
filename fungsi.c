@@ -41,7 +41,7 @@ void tambah_tugas(){
     while (!valid) {
         bbt = 0, tgl = 0, bln = 0, thn = 0;
         printf("Masukkan Bobot Tugas Dalam Persen (tanpa tanda persen): ");
-        scanf("%d", &bbt);
+        scanf("%f", &bbt);
         while(getchar()!='\n');
         printf("Masukkan Deadline Tugas!\n");
         printf("Tanggal: ");
