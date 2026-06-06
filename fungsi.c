@@ -264,8 +264,8 @@ void min_heap(int idx){
     int min = idx;
     int ada = 1;
     Tugas *temp;
-   while (ada)
-   {    
+    while (ada)
+    {    
         if (left_child < banyak_tugas && arr_heap[left_child] != NULL) 
         {
             if (arr_heap[left_child]->deadline < arr_heap[min]->deadline) 
@@ -286,7 +286,7 @@ void min_heap(int idx){
             right_child = 2*idx +2;
         } 
         else { ada = 0; }   
-   }
+    }
 }
 
 void lihat_tugas_paling_mendesak(){
