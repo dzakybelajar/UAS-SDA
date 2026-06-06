@@ -115,7 +115,7 @@ void cari_tugas(){
         int thn = temp1->deadline / 10000;
         printf("Nama Tugas: %s\n", temp1->nama_tugas);
         printf("Nama Mata Kuliah: %s\n",temp1->nama_mapel);
-        printf("Bobot: %d%%\n", temp1->bobot);
+        printf("Bobot: %.2f%%\n", temp1->bobot);
         printf("Deadline: %d-%d-%d\n\n", tgl, bln, thn);  
         ketemu = 1;
     }
@@ -216,7 +216,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
         int tgl = daftar[i]->deadline % 100;
         int bln = ((daftar[i]->deadline % 10000) - tgl) / 100;
         int thn = daftar[i]->deadline / 10000;
-        printf("%d. %s - %s - bobot: %d%% - deadline: %d-%d-%d\n", i+1, 
+        printf("%d. %s - %s - bobot: %.2f%% - deadline: %d-%d-%d\n", i+1, 
                daftar[i]->nama_tugas, 
                daftar[i]->nama_mapel, 
                daftar[i]->bobot,
@@ -299,6 +299,6 @@ void lihat_tugas_paling_mendesak(){
     printf("=== Tugas Yang Paling Mendesak ===\n");
     printf("Nama Tugas: %s\n", arr_heap[0]->nama_tugas);
     printf("Nama Mapel: %s\n", arr_heap[0]->nama_mapel);
-    printf("Bobot: %d%%\n", arr_heap[0]->bobot);
+    printf("Bobot: %.2f%%\n", arr_heap[0]->bobot);
     printf("Deadline: %d-%d-%d\n\n", tgl, bln, thn);
 }

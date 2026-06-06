@@ -13,7 +13,7 @@
 typedef struct Tugas {
     char nama_tugas[20];
     char nama_mapel[20];
-    int bobot;
+    float bobot;
     int deadline;
     struct Tugas *next;
 } Tugas;
