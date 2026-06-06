@@ -56,7 +56,7 @@ void tambah_tugas(){
         if (cek_tanggal_valid(bbt,tgl, bln, thn)) {
             valid = 1;
         } else {
-            printf("Tanggal tidak valid! Silakan masukkan lagi.\n");
+            printf("bobot atau deadline tidak valid! Silakan masukkan lagi.\n");
         }
     }
     
