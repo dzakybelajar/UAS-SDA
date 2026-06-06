@@ -5,7 +5,7 @@ int heap = 0;
 Tugas *tugas[size_hash_table];
 Tugas *arr_heap[MAX_TUGAS];
 
-int cek_tanggal_valid(int bbt,int tgl, int bln, int thn) {
+int cek_tanggal_valid(float bbt,int tgl, int bln, int thn) {
     if (bbt < 0 || bbt > 100) return 0;
     
     if (thn < 2024 || thn > 2030) return 0;  
@@ -74,7 +74,7 @@ int hitung_indeks(char nama_tugas[]){
     return idx;
 }
 
-void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
+void hash_table(char nama_tugas[], char nama_mapel[], int ddline, float bbt){
     Tugas *newnode = (Tugas*) malloc(sizeof(Tugas));
     strcpy(newnode->nama_tugas, nama_tugas);
     strcpy(newnode->nama_mapel, nama_mapel);
