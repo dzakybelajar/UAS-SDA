@@ -5,18 +5,15 @@ int heap = 0;
 Tugas *tugas[size_hash_table];
 Tugas *arr_heap[MAX_TUGAS];
 
-// ========== FUNGSI VALIDASI TANGGAL ==========
 int cek_tanggal_valid(int tgl, int bln, int thn) {
-    if (thn < 2024 || thn > 2030) return 0;  // tahun masuk akal
+    if (thn < 2024 || thn > 2030) return 0;  
     
-    if (bln < 1 || bln > 12) return 0;       // bulan 1-12
+    if (bln < 1 || bln > 12) return 0;     
     
-    // Jumlah hari per bulan
     int hari_per_bulan[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     
-    // Cek tahun kabisat
     if (thn % 400 == 0 || (thn % 4 == 0 && thn % 100 != 0)) {
-        hari_per_bulan[1] = 29;  // Februari kabisat 29 hari
+        hari_per_bulan[1] = 29; 
     }
     
     if (tgl < 1 || tgl > hari_per_bulan[bln - 1]) return 0;
