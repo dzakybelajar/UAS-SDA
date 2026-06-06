@@ -10,23 +10,23 @@ void tambah_tugas(){
     char nama_mapel[20];
     int bbt, tgl, bln, thn, deadline;
 
-    printf("Masukkan nama tugas: ");
+    printf("Masukkan Nama Tugas: ");
     fgets(nama_tugas, 20, stdin);
     nama_tugas[strcspn(nama_tugas,"\n")] = 0;
-    printf("Masukkan nama matkul: ");
+    printf("Masukkan Nama Mata Kuliah: ");
     fgets(nama_mapel, 20, stdin);
     nama_mapel[strcspn(nama_mapel,"\n")] = 0;
-    printf("Masukkan bobot tugas dalam persen(tanpa tanda persen): ");
+    printf("Masukkan Bobot Tugas Dalam Persen (tanpa tanda persen): ");
     scanf("%d", &bbt);
-    printf("Masukkan deadline tugas!\n");
+    printf("Masukkan Deadline Tugas!\n");
     printf("Tanggal: ");
     scanf("%d", &tgl);
     printf("Bulan: ");
     scanf("%d", &bln);
-    printf("tahun: ");
-    scanf("%d",&thn);
-    deadline = thn*10000 + bln*100 + tgl;
-    hash_table(nama_tugas, nama_mapel,deadline,bbt);
+    printf("Tahun: ");
+    scanf("%d", &thn);
+    deadline = thn * 10000 + bln * 100 + tgl;
+    hash_table(nama_tugas, nama_mapel, deadline, bbt);
 }
 
 int hitung_indeks(char nama_tugas[]){
@@ -53,18 +53,18 @@ void hash_table(char nama_tugas[], char nama_mapel[], int ddline, int bbt){
     up_heap(banyak_tugas);
 
     banyak_tugas++; 
-    printf("Tugas:%s\n", nama_tugas);
-    printf("Mata pelajaran:%s\n", nama_mapel);
-    printf("Berhasil ditambah!\n\n");
+    printf("Tugas:  %s\n", nama_tugas);
+    printf("Mata Kuliah: %s\n", nama_mapel);
+    printf("Berhasil Ditambah!\n\n");
 }
 
 void cari_tugas(){
     char nt[20];
     int ketemu = 0;
     if (banyak_tugas == 0)
-    { printf("Tidak ada tugas!\n\n"); return; }
+    { printf("Tidak Ada Tugas!\n\n"); return; }
 
-    printf("Masukkan nama tugas: ");
+    printf("Masukkan Nama Tugas: ");
     fgets(nt, 20, stdin);
     nt[strcspn(nt,"\n")] = 0;
 
@@ -77,23 +77,23 @@ void cari_tugas(){
         int tgl = temp1->deadline % 100;
         int bln = ((temp1->deadline % 10000) - tgl) / 100;
         int thn = temp1->deadline / 10000;
-        printf("Nama tugas: %s\n", temp1->nama_tugas);
-        printf("Nama mata pelajaran: %s\n",temp1->nama_mapel);
+        printf("Nama Tugas: %s\n", temp1->nama_tugas);
+        printf("Nama Mata Kuliah: %s\n",temp1->nama_mapel);
         printf("Bobot: %d%%\n", temp1->bobot);
         printf("Deadline: %d-%d-%d\n\n", tgl, bln, thn);  
         ketemu = 1;
     }
     if (ketemu == 0)
-    { printf("Tugas tidak ditemukan!\n\n"); }
+    { printf("Tugas Tidak Ditemukan!\n\n"); }
 }
 
 void hapus_tugas(){
     char nt[20];
     int ketemu = 0;
     if (banyak_tugas == 0)
-    { printf("Tidak ada tugas!\n\n"); return; }
+    { printf("Tidak Ada Tugas!\n\n"); return; }
 
-    printf("Masukkan nama tugas:");
+    printf("Masukkan Nama Tugas: ");
     fgets(nt, 20, stdin);
     nt[strcspn(nt,"\n")] = 0;
 
@@ -123,9 +123,9 @@ void hapus_tugas(){
         }     
     }
     if (ketemu == 1)
-    {  printf("Tugas berhasil dihapus!\n\n"); banyak_tugas--; }
+    {  printf("Tugas Berhasil Dihapus!\n\n"); banyak_tugas--; }
     else
-    { printf("Tugas tidak ditemukan!\n\n"); }
+    { printf("Tugas Tidak Ditemukan!\n\n"); }
 }
 
 void tukar_tugas(Tugas **a, Tugas **b) {
@@ -158,7 +158,7 @@ void quick_sort_bobot(Tugas **arr, int low, int high) {
 
 void urutkan_tugas_berdasarkan_bobot_nilai() {
     if (banyak_tugas == 0) {
-        printf("Tidak ada tugas!\n\n");
+        printf("Tidak Ada Tugas!\n\n");
         return;
     }
     
@@ -174,7 +174,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
     }
     
     quick_sort_bobot(daftar, 0, count - 1);
-    printf("\n=== Urutan tugas berdasarkan bobot tertinggi ===\n");
+    printf("\n=== Urutan Tugas Berdasarkan Bobot Tertinggi ===\n");
     for (int i = 0; i < count; i++) {
         int tgl = daftar[i]->deadline % 100;
         int bln = ((daftar[i]->deadline % 10000) - tgl) / 100;
@@ -191,7 +191,7 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
 void hapus_di_heap(Tugas *temp){
     int idx = -1;
     for (idx = 0; idx < banyak_tugas; idx++)
-    { if (strcasecmp(arr_heap[idx]->nama_tugas,temp->nama_tugas) == 0){ break; } }
+    { if (strcasecmp(arr_heap[idx]->nama_tugas, temp->nama_tugas) == 0){ break; } }
 
     if (idx != -1)
     {
@@ -254,14 +254,14 @@ void min_heap(int idx){
 
 void lihat_tugas_paling_mendesak(){
     if (banyak_tugas == 0)
-    { printf("tidak ada tugas!\n"); return; }
+    { printf("Tidak Ada Tugas!\n"); return; }
 
     int tgl = arr_heap[0]->deadline % 100;
     int bln = ((arr_heap[0]->deadline % 10000) - tgl) / 100;
     int thn = arr_heap[0]->deadline / 10000;
-    printf("===tugas yang paling mendesak===\n");
-    printf("nama tugas: %s\n", arr_heap[0]->nama_tugas);
-    printf("nama mapel: %s\n", arr_heap[0]->nama_mapel);
-    printf("bobot: %d%%\n", arr_heap[0]->bobot);
-    printf("deadline: %d-%d-%d\n\n", tgl, bln, thn);
+    printf("=== Tugas Yang Paling Mendesak ===\n");
+    printf("Nama Tugas: %s\n", arr_heap[0]->nama_tugas);
+    printf("Nama Mapel: %s\n", arr_heap[0]->nama_mapel);
+    printf("Bobot: %d%%\n", arr_heap[0]->bobot);
+    printf("Deadline: %d-%d-%d\n\n", tgl, bln, thn);
 }
