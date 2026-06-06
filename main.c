@@ -33,10 +33,10 @@ void menu_utama(){
             urutkan_tugas_berdasarkan_bobot_nilai();
             break;
         case 6:
-            printf("keluar dari program!\n");
+            printf("Keluar dari program!\n");
             break;
         default:
-            printf("input tidak valid!\n");
+            printf("Input tidak valid!\n");
             break;
         }
     } while (pilihan != 6);
