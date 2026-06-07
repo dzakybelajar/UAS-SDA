@@ -31,10 +31,10 @@ void tambah_tugas(){
     int valid = 0;
 
     printf("Masukkan Nama Tugas: ");
-    fgets(nama_tugas, 20, stdin);
+    fgets(nama_tugas, 50, stdin);
     nama_tugas[strcspn(nama_tugas,"\n")] = 0;
     printf("Masukkan Nama Mata Kuliah: ");
-    fgets(nama_mapel, 20, stdin);
+    fgets(nama_mapel, 50, stdin);
     nama_mapel[strcspn(nama_mapel,"\n")] = 0;
     
     // Validasi deadline
@@ -101,7 +101,7 @@ void cari_tugas(){
     { printf("Tidak Ada Tugas!\n\n"); return; }
 
     printf("Masukkan Nama Tugas: ");
-    fgets(nt, 20, stdin);
+    fgets(nt, 50, stdin);
     nt[strcspn(nt,"\n")] = 0;
 
     int indeks = hitung_indeks(nt);
@@ -124,13 +124,13 @@ void cari_tugas(){
 }
 
 void hapus_tugas(){
-    char nt[20];
+    char nt[50];
     int ketemu = 0;
     if (banyak_tugas == 0)
     { printf("Tidak Ada Tugas!\n\n"); return; }
 
     printf("Masukkan Nama Tugas: ");
-    fgets(nt, 20, stdin);
+    fgets(nt, 50, stdin);
     nt[strcspn(nt,"\n")] = 0;
 
     int indeks = hitung_indeks(nt);  
