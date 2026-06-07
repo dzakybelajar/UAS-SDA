@@ -11,8 +11,8 @@
 #define MAX_TUGAS 100
 
 typedef struct Tugas {
-    char nama_tugas[20];
-    char nama_mapel[20];
+    char nama_tugas[50];
+    char nama_mapel[50];
     float bobot;
     int deadline;
     struct Tugas *next;
