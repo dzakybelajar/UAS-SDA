@@ -260,11 +260,12 @@ void up_heap(int idx){
 void min_heap(int idx){
     int left_child = 2*idx + 1;
     int right_child = 2*idx + 2;
-    int min = idx;
+    int min;
     int ada = 1;
     Tugas *temp;
     while (ada)
     {    
+        min = idx;
         if (left_child < banyak_tugas && arr_heap[left_child] != NULL) 
         {
             if (arr_heap[left_child]->deadline < arr_heap[min]->deadline) 
