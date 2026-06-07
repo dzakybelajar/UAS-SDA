@@ -160,7 +160,7 @@ void hapus_tugas(){
         }     
     }
     if (ketemu == 1)
-    {  printf("Tugas Berhasil Dihapus!\n\n"); banyak_tugas--; }
+    {  printf("Tugas Berhasil Dihapus!\n\n"); }
     else
     { printf("Tugas Tidak Ditemukan!\n\n"); }
 }
@@ -226,20 +226,19 @@ void urutkan_tugas_berdasarkan_bobot_nilai() {
 }
 
 void hapus_di_heap(Tugas *temp){
-    int idx = -1;
+    int idx;
     for (idx = 0; idx < banyak_tugas; idx++)
     { if (strcasecmp(arr_heap[idx]->nama_tugas, temp->nama_tugas) == 0){ break; } }
+    banyak_tugas--;
 
-    if (idx != -1)
+    if (idx != banyak_tugas)
     {
-        arr_heap[idx] = arr_heap[banyak_tugas - 1];
-        arr_heap[banyak_tugas - 1] = NULL;
-        if (idx != banyak_tugas - 1)
-        { 
-            up_heap(idx);
-            min_heap(idx); 
-        }
+        arr_heap[idx] = arr_heap[banyak_tugas];
+        arr_heap[banyak_tugas] = NULL;
+        up_heap(idx);
+        min_heap(idx); 
     }
+    else { arr_heap[idx] = NULL; }
 }
 
 void up_heap(int idx){
