@@ -24,8 +24,8 @@ int cek_tanggal_valid(float bbt,int tgl, int bln, int thn) {
 }
 
 void tambah_tugas(){
-    char nama_tugas[20];
-    char nama_mapel[20];
+    char nama_tugas[50];
+    char nama_mapel[50];
     float bbt;
     int tgl, bln, thn, deadline;
     int valid = 0;
